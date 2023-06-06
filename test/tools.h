@@ -1,4 +1,4 @@
-﻿// Tools Class Library (Version:BETA-0.0.1.5589 NOT RELEASE) INNER VERSION
+﻿// Tools Class Library (Version:ALPHA-0.0.1.6001) ALPHA TEST VERSION
 // ALPHA TEST
 // PUBLISH BY 404 Software Studio https://www.dofozero.top
 // TPCL Copyright (C) 2023-2024 Cloudwhile. All rights reserved.
@@ -19,6 +19,9 @@
 
 
 // Create:2023.5.23
+
+
+
 #define _CRT_SECURE_NO_WARNINGS
 #define _CRT_NONSTDC_NO_DEPRECATE
 #pragma once

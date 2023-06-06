@@ -1,4 +1,4 @@
-// Tools Class Library (Version:BETA-0.0.1.5589 NOT RELEASE) INNER VERSION
+// Tools Class Library (Version:ALPHA-0.0.1.6001) ALPHA TEST VERSION
 // ALPHA TEST
 // PUBLISH BY 404 Software Studio https://www.dofozero.top
 // TPCL Copyright (C) 2023-2024 Cloudwhile. All rights reserved.
@@ -55,7 +55,10 @@ namespace err {
 		DEFINE_S SYS_FATAL_ERROR_S = "SYS_FATAL_ERROR";
 		DEFINE_S CAC_FATAL_ERROR_S = "CAC_FATAL_ERROR";
 
+		bool dirExists(DEFINE_S& dirName_in);
+
 		DEFINE_S typeF(DEFINE& TYPE);
+		
 	public:
 		//public code
 
@@ -67,14 +70,13 @@ namespace err {
 		DEFINE_S ERROR_S = "ERROR";
 		DEFINE_S FATAL_S = "FATAL";
 
+
 		error() {};
-		error(DEFINE_S& message,DEFINE& TYPE);
+		error(DEFINE_S& message, DEFINE& TYPE);
 		~error();
 
-		bool dirExists(DEFINE_S& dirName_in);
-		
 		bool write_log(DEFINE_S& messageOut, DEFINE& level);
-		
+
 	};
 }
 
