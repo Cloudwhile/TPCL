@@ -1,4 +1,4 @@
-/// Tools Class Library (Version:BETA-0.0.1.5589 NOT RELEASE) INNER VERSION
+/// Tools Class Library (Version:BETA-0.0.1.5599 NOT RELEASE) INNER VERSION
 // ALPHA TEST
 // PUBLISH BY 404 Software Studio https://www.dofozero.top
 // TPCL Copyright (C) 2023-2024 Cloudwhile. All rights reserved.
@@ -142,6 +142,7 @@ bool err::error::write_log(DEFINE_S& messageOut,DEFINE& level)
 	outfs.open(LOG_PATH, ios_base::out | ios_base::app);
 	outfs << "[" << time_full << "]" << " \t" << "(" << typeF(level) << ")" << "\t" << messageOut << endl;
 
+	outfs.open(LOG_PATH, ios_base::out);
 	outfs.close();
 	return false;
 }
