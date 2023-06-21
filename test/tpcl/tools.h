@@ -60,6 +60,7 @@ namespace stdtool {
 
 		int readini();
 		void time_count();
+		bool write_file_q(string cFilePath, string CSTR);
 	public:
 		tools();
 		~tools();
@@ -69,6 +70,7 @@ namespace stdtool {
 		bool write_file(string cFilePath, string CSTR);
 		bool write_file(char* FilePath, string CSTR);
 		bool write_file(string cFilePath, char* STR);
+		bool write_file(string cFilePath, string CSTR, int type);
 
 		//password for console
 		static void get_pwd(string& str, int size);

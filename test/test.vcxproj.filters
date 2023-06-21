@@ -15,27 +15,33 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="errorm.cpp">
-      <Filter>头文件</Filter>
-    </ClCompile>
-    <ClCompile Include="readini.cpp">
-      <Filter>头文件</Filter>
-    </ClCompile>
-    <ClCompile Include="tools.cpp">
-      <Filter>头文件</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="tpcl\errorm.cpp">
+      <Filter>头文件</Filter>
+    </ClCompile>
+    <ClCompile Include="tpcl\main.cpp">
+      <Filter>头文件</Filter>
+    </ClCompile>
+    <ClCompile Include="tpcl\readini.cpp">
+      <Filter>头文件</Filter>
+    </ClCompile>
+    <ClCompile Include="tpcl\tools.cpp">
+      <Filter>头文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="errorm.h">
+    <ClInclude Include="tpcl.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="readini.h">
+    <ClInclude Include="tpcl\errorm.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="tools.h">
+    <ClInclude Include="tpcl\readini.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tpcl\tools.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

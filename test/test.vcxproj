@@ -127,15 +127,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="errorm.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="readini.cpp" />
-    <ClCompile Include="tools.cpp" />
+    <ClCompile Include="tpcl\errorm.cpp" />
+    <ClCompile Include="tpcl\main.cpp" />
+    <ClCompile Include="tpcl\readini.cpp" />
+    <ClCompile Include="tpcl\tools.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="errorm.h" />
-    <ClInclude Include="readini.h" />
-    <ClInclude Include="tools.h" />
+    <ClInclude Include="tpcl.h" />
+    <ClInclude Include="tpcl\errorm.h" />
+    <ClInclude Include="tpcl\readini.h" />
+    <ClInclude Include="tpcl\tools.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

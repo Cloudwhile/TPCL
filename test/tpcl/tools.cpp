@@ -285,6 +285,23 @@ bool stdtool::tools::write_file(string cFilePath, char* STR)
 	return false;
 }
 
+bool stdtool::tools::write_file(string cFilePath, string CSTR, int type)
+{
+	if (type == 1) {
+		write_file_q(cFilePath, CSTR);
+	}
+
+	return false;
+}
+
+
+bool stdtool::tools::write_file_q(string cFilePath, string CSTR) {
+	time_count();
+	ofs.open(cFilePath,ios_base::out | ios_base::app);
+	ofs << CSTR;
+	ofs.close();
+	return false;
+}
 
 
 
