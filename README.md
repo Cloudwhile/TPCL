@@ -19,6 +19,10 @@
       Website
     </a>
     <span> | </span>
+    <a href="https://github.com/Cloudwhile/TPCL/#tpcltools-public-class-library">
+      Description
+    </a>
+    <span> | </span>
     <a href="https://github.com/Cloudwhile/TPCL/releases/tag/v0.0.1.6001-Alpha.1">
       Downloads
     </a>
