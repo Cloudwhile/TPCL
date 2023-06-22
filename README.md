@@ -1,6 +1,5 @@
 <h1 align="center">TPCL(Tools Public Class Library)</h1>
 
-
 <div align="center">
   <a href="mailto:whitecat.this@gmail.com">
     <img src="https://img.shields.io/badge/AUTHOR-Cloudwhile-brightgreen" alt="AUTHOR">
@@ -47,13 +46,13 @@ Make coding C++ program more than faster and easier.
 <h2 align="center">Use TPCL</h2>
 
 More Details will be shown here soon!
-You could [search here](https://www.dofozero.top/tpcltools-public-class-library-for-cpp/) first.
+You could [Browse here](https://www.dofozero.top/tpcltools-public-class-library-for-cpp/) first.
 
 <h2 align="center">TODO</h2>
 
 - [x] Create TPCL project
-- [x] Add basic function
+- [x] Add basic functions
 - [x] Published TPCL the first release
-- [ ] Add **read** function
-- [ ] Add **multi-mode** function
+- [ ] Add **read** functions
+- [ ] Add **multi-mode** functions
 - [ ] Support Linux
