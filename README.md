@@ -15,16 +15,44 @@
 
 <div align="center">
   <h3>
+    <a>
+      Fast and easy to coding!
+    </a>
+  </h3>
+  <h3>
     <a href="https://www.dofozero.top/tpcltools-public-class-library-for-cpp/">
       Website
     </a>
     <span> | </span>
-    <a href="https://github.com/Cloudwhile/TPCL/#tpcltools-public-class-library">
+    <a href="#description">
       Description
     </a>
     <span> | </span>
     <a href="https://github.com/Cloudwhile/TPCL/releases/tag/v0.0.1.6001-Alpha.1">
       Downloads
     </a>
+     <span> | </span>
+     <a href="#use-tpcl">
+       Use TPCL
+     </a>
   </h3>
+  <sub>
+    Available for Windows.
+  </sub>
 </div>
+
+<h2 align="center">Description</h2>
+Make coding C++ program more than faster and easier.
+
+<h2 align="center">Use TPCL</h2>
+
+More Details will be shown here soon!
+You could [search here](https://www.dofozero.top/tpcltools-public-class-library-for-cpp/) first.
+
+<h2 align="center">TODO</h2>
+
+- [x] Create TPCL project
+- [x] Add basic function
+- [x] Published TPCL the first release
+- [ ] Add **read** function
+- [ ] Add **multi-mode** function
