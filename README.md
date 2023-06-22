@@ -56,3 +56,4 @@ You could [search here](https://www.dofozero.top/tpcltools-public-class-library-
 - [x] Published TPCL the first release
 - [ ] Add **read** function
 - [ ] Add **multi-mode** function
+- [ ] Support Linux
