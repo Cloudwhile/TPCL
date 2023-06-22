@@ -2,7 +2,7 @@
 
 
 <div align="center">
-  <a href="mailto:3245567560@qq.com">
+  <a href="mailto:whitecat.this@gmail.com">
     <img src="https://img.shields.io/badge/AUTHOR-Cloudwhile-brightgreen" alt="AUTHOR">
   </a>
   <a href="https://github.com/Cloudwhile/TPCL/releases/latest">
@@ -16,7 +16,7 @@
 <div align="center">
   <h3>
     <a>
-      Fast and easy to coding!
+      💮Fast and easy to coding!🤍
     </a>
   </h3>
   <h3>
