@@ -30,7 +30,7 @@
 #define TOOLS_H
 
 #include <iostream>
-
+#include <map>
 
 
 
@@ -41,6 +41,21 @@ using namespace std;
 
 namespace stdtool {
 	class tools {
+	public:
+		tools();
+		~tools();
+		char* getTime();
+		//write_file function
+		bool writeFile(char* FilePath, char* STR);
+		bool writeFile(string cFilePath, string CSTR);
+		bool writeFile(char* FilePath, string CSTR);
+		bool writeFile(string cFilePath, char* STR);
+		bool writeFile(string cFilePath, string CSTR, int type);
+
+		//password for console
+		static void getPwd(string& str, int size);
+
+	private:
 		int i = 0;
 		int time_num = 0;
 
@@ -52,30 +67,42 @@ namespace stdtool {
 
 		string notice_str;
 		string log_str;
-		char* timestramp_tmp;
-		char* timestramp[];
+		char* timestramp_tmp = {};
+		char* timestramp[1000] = {};
 
 
 		//private function
 
 		int readini();
 		void time_count();
-		bool write_file_q(string cFilePath, string CSTR);
-	public:
-		tools();
-		~tools();
-		char* get_time();
-		//write_file function
-		bool write_file(char* FilePath, char* STR);
-		bool write_file(string cFilePath, string CSTR);
-		bool write_file(char* FilePath, string CSTR);
-		bool write_file(string cFilePath, char* STR);
-		bool write_file(string cFilePath, string CSTR, int type);
-
-		//password for console
-		static void get_pwd(string& str, int size);
+		bool writeFile_q(string cFilePath, string CSTR);
 	};
 }
 
+namespace stdini
+{
+	class readConfig
+	{
+	public:
+		readConfig()
+		{
+		}
+		~readConfig()
+		{
+		}
+		bool ReadConfig(const std::string& fileName);
+		std::string ReadString(const char* section, const char* item, const char* default_Value);
+		int ReadInt(const char* section, const char* item, const int& default_Value);
+		float ReadFloat(const char* section, const char* item, const float& default_Value);
+	private:
+		bool IsSpace(char c);
+		bool IsCommentChar(char c);
+		void Trim(std::string& str);
+		bool AnalyseLine(const std::string& line, std::string& section, std::string& key, std::string& value);
 
+	private:
+		//std::map<std::string, std::string> settings_;
+		std::map<std::string, std::map<std::string, std::string> >settings_;
+	};
+}
 #endif

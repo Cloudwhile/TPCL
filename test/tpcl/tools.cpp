@@ -21,13 +21,13 @@
 // Create:2023.5.23
 
 #include "tools.h"
-#include "readini.h"
 
 
 
 
 
 #include <conio.h>
+#include <string>
 #include <fstream>
 #include <cstdlib>
 #include <chrono>
@@ -44,7 +44,6 @@
 
 
 using namespace std::chrono;
-using namespace stdini;
 
 
 
@@ -57,7 +56,7 @@ using namespace stdini;
 
 int stdtool::tools::readini()
 {
-	RCG ri;
+	stdini::readConfig ri;
 	bool ret = ri.ReadConfig(INIFILE);
 	if (ret == false) {
 		cout << "Cannot read the config file :\t" << INIFILE << "\nUsing default config." << endl;
@@ -83,7 +82,7 @@ int stdtool::tools::readini()
 
 void stdtool::tools::time_count()
 {
-	timestramp_tmp = stdtool::tools::get_time();
+	timestramp_tmp = stdtool::tools::getTime();
 	time_num = 0;
 	time_num++;
 
@@ -93,50 +92,33 @@ void stdtool::tools::time_count()
 stdtool::tools::tools()
 {
 	
-	
 }
 
 stdtool::tools::~tools()
 {
 }
 
-char* stdtool::tools::get_time()
+char* stdtool::tools::getTime()
 {
 	system_clock::time_point now = system_clock::now();
 
-	// The number of nanoseconds from 1970-01-01 00:00:00.
 	chrono::nanoseconds d = now.time_since_epoch();
-	//cout << "current nanoseconds: " << d.count() << endl;
 
-	// Convert to microseconds, loss of accuracy.
 	chrono::microseconds mcrosec = chrono::duration_cast<chrono::microseconds>(d);
-	//cout << "current microseconds: " << mcrosec.count() << endl;
 
-	// Convert to milliseconds.
 	chrono::milliseconds millsec = chrono::duration_cast<chrono::milliseconds>(d);
-	//cout << "current milliseconds: " << millsec.count() << endl;
 
-	// Convert to seconds.
 	chrono::seconds sec = chrono::duration_cast<chrono::seconds>(d);
-	//cout << "current seconds: " << sec.count() << endl;
 
-	// Convert to minutes.
 	chrono::minutes minutes = chrono::duration_cast<chrono::minutes>(d);
-	//cout << "current minutes: " << minutes.count() << endl;
 
-	// Convert to hours.
 	chrono::hours hours = chrono::duration_cast<chrono::hours>(d);
-	//cout << "current hours: " << hours.count() << endl;
 
-	// Convert to day.
 	typedef chrono::duration<int, ratio<24 * 60 * 60>> Day;
 	Day days = chrono::duration_cast<Day>(d);
-	//cout << "current days: " << days.count() << endl;
 
-	// Converts to type time_t in ctime.
 	time_t tt = system_clock::to_time_t(now);
 
-	// Output time.
 	auto timed = ctime(&tt);
 	i = 0;
 	while (timed[i] != '\n') {
@@ -170,7 +152,7 @@ LPCWSTR stringToLPCWSTR(string origin)
 
 
 //Write File Function
-bool stdtool::tools::write_file(char* FilePath, char* STR)
+bool stdtool::tools::writeFile(char* FilePath, char* STR)
 {
 	notice_str = (string)"[" + FilePath + (string)"]" + (string)" already exists!!! \nWant to cover it?";
 	LPCWSTR NSTR = stringToLPCWSTR(notice_str);
@@ -199,7 +181,7 @@ bool stdtool::tools::write_file(char* FilePath, char* STR)
 	return false;
 }
 
-bool stdtool::tools::write_file(string cFilePath, string CSTR)
+bool stdtool::tools::writeFile(string cFilePath, string CSTR)
 {
 	notice_str = (string)"[" + cFilePath + (string)"]" + (string)" already exists!!! \nWant to cover it?";
 	LPCWSTR NSTR = stringToLPCWSTR(notice_str);
@@ -228,7 +210,7 @@ bool stdtool::tools::write_file(string cFilePath, string CSTR)
 	return false;
 }
 
-bool stdtool::tools::write_file(char* FilePath, string CSTR)
+bool stdtool::tools::writeFile(char* FilePath, string CSTR)
 {
 	notice_str = (string)"[" + FilePath + (string)"]" + (string)" already exists!!! \nWant to cover it?";
 	LPCWSTR NSTR = stringToLPCWSTR(notice_str);
@@ -256,7 +238,7 @@ bool stdtool::tools::write_file(char* FilePath, string CSTR)
 	return false;
 }
 
-bool stdtool::tools::write_file(string cFilePath, char* STR)
+bool stdtool::tools::writeFile(string cFilePath, char* STR)
 {
 	notice_str = (string)"[" + cFilePath + (string)"]" + (string)" already exists!!! \nWant to cover it?";
 	LPCWSTR NSTR = stringToLPCWSTR(notice_str);
@@ -285,17 +267,17 @@ bool stdtool::tools::write_file(string cFilePath, char* STR)
 	return false;
 }
 
-bool stdtool::tools::write_file(string cFilePath, string CSTR, int type)
+bool stdtool::tools::writeFile(string cFilePath, string CSTR, int type)
 {
 	if (type == 1) {
-		write_file_q(cFilePath, CSTR);
+		writeFile_q(cFilePath, CSTR);
 	}
 
 	return false;
 }
 
 
-bool stdtool::tools::write_file_q(string cFilePath, string CSTR) {
+bool stdtool::tools::writeFile_q(string cFilePath, string CSTR) {
 	time_count();
 	ofs.open(cFilePath,ios_base::out | ios_base::app);
 	ofs << CSTR;
@@ -305,7 +287,7 @@ bool stdtool::tools::write_file_q(string cFilePath, string CSTR) {
 
 
 
-void stdtool::tools::get_pwd(string& str, int size)
+void stdtool::tools::getPwd(string& str, int size)
 {
 	char c;
 	int count = 0;
@@ -338,3 +320,185 @@ void stdtool::tools::get_pwd(string& str, int size)
 
 
 
+bool stdini::readConfig::IsSpace(char c)
+{
+	if (' ' == c || '\t' == c)
+		return true;
+	return false;
+}
+
+bool stdini::readConfig::IsCommentChar(char c)
+{
+	switch (c) {
+	case '#':
+		return true;
+	default:
+		return false;
+	}
+}
+
+void stdini::readConfig::Trim(std::string& str)
+{
+	if (str.empty())
+	{
+		return;
+	}
+	int i, start_pos, end_pos;
+	for (i = 0; i < str.size(); ++i) {
+		if (!IsSpace(str[i])) {
+			break;
+		}
+	}
+	if (i == str.size())
+	{
+		str = "";
+		return;
+	}
+	start_pos = i;
+	for (i = str.size() - 1; i >= 0; --i) {
+		if (!IsSpace(str[i])) {
+			break;
+		}
+	}
+	end_pos = i;
+	str = str.substr(start_pos, end_pos - start_pos + 1);
+}
+
+bool stdini::readConfig::AnalyseLine(const std::string& line, std::string& section, std::string& key, std::string& value)
+{
+	if (line.empty())
+		return false;
+	int start_pos = 0, end_pos = line.size() - 1, pos, s_startpos, s_endpos;
+	if ((pos = line.find("#")) != -1)
+	{
+		if (0 == pos)
+		{
+			return false;
+		}
+		end_pos = pos - 1;
+	}
+	if (((s_startpos = line.find("[")) != -1) && ((s_endpos = line.find("]"))) != -1)
+	{
+		section = line.substr(s_startpos + 1, s_endpos - 1);
+		return true;
+	}
+	std::string new_line = line.substr(start_pos, start_pos + 1 - end_pos);
+	if ((pos = new_line.find('=')) == -1)
+		return false;
+	key = new_line.substr(0, pos);
+	value = new_line.substr(pos + 1, end_pos + 1 - (pos + 1));
+	Trim(key);
+	if (key.empty()) {
+		return false;
+	}
+	Trim(value);
+	if ((pos = value.find("\r")) > 0)
+	{
+		value.replace(pos, 1, "");
+	}
+	if ((pos = value.find("\n")) > 0)
+	{
+		value.replace(pos, 1, "");
+	}
+	return true;
+}
+
+bool stdini::readConfig::ReadConfig(const std::string& fileName)
+{
+	settings_.clear();
+	std::ifstream infile(fileName.c_str());//The constructor calls open by default, so you can omit it
+	//std::ifstream infile;
+	//infile.open(fileName.c_str());
+	//bool ret = infile.is_open()
+	if (!infile) {
+		return false;
+	}
+	std::string line, key, value, section;
+	std::map<std::string, std::string> k_v;
+	std::map<std::string, std::map<std::string, std::string> >::iterator it;
+	while (getline(infile, line))
+	{
+		if (AnalyseLine(line, section, key, value))
+		{
+			it = settings_.find(section);
+			if (it != settings_.end())
+			{
+				k_v[key] = value;
+				it->second = k_v;
+			}
+			else
+			{
+				k_v.clear();
+				settings_.insert(std::make_pair(section, k_v));
+			}
+		}
+		key.clear();
+		value.clear();
+	}
+	infile.close();
+	return true;
+}
+
+std::string stdini::readConfig::ReadString(const char* section, const char* item, const char* default_Value)
+{
+	std::string tmp_s(section);
+	std::string tmp_i(item);
+	std::string def(default_Value);
+	std::map<std::string, std::string> k_v;
+	std::map<std::string, std::string>::iterator it_item;
+	std::map<std::string, std::map<std::string, std::string> >::iterator it;
+	it = settings_.find(tmp_s);
+	if (it == settings_.end())
+	{
+		return def;
+	}
+	k_v = it->second;
+	it_item = k_v.find(tmp_i);
+	if (it_item == k_v.end())
+	{
+		return def;
+	}
+	return it_item->second;
+}
+
+int stdini::readConfig::ReadInt(const char* section, const char* item, const int& default_Value)
+{
+	std::string tmp_s(section);
+	std::string tmp_i(item);
+	std::map<std::string, std::string> k_v;
+	std::map<std::string, std::string>::iterator it_item;
+	std::map<std::string, std::map<std::string, std::string> >::iterator it;
+	it = settings_.find(tmp_s);
+	if (it == settings_.end())
+	{
+		return default_Value;
+	}
+	k_v = it->second;
+	it_item = k_v.find(tmp_i);
+	if (it_item == k_v.end())
+	{
+		return default_Value;
+	}
+	return atoi(it_item->second.c_str());
+}
+
+float stdini::readConfig::ReadFloat(const char* section, const char* item, const float& default_Value)
+{
+	std::string tmp_s(section);
+	std::string tmp_i(item);
+	std::map<std::string, std::string> k_v;
+	std::map<std::string, std::string>::iterator it_item;
+	std::map<std::string, std::map<std::string, std::string> >::iterator it;
+	it = settings_.find(tmp_s);
+	if (it == settings_.end())
+	{
+		return default_Value;
+	}
+	k_v = it->second;
+	it_item = k_v.find(tmp_i);
+	if (it_item == k_v.end())
+	{
+		return default_Value;
+	}
+	return atof(it_item->second.c_str());
+}
