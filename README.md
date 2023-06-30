@@ -73,10 +73,11 @@ You could [Browse here](https://www.dofozero.top/tpcltools-public-class-library-
 - [x] Create TPCL project
 - [x] Add basic functions
 - [x] Published TPCL the first release
-- [ ] Optimize TPCL structure
+- [x] Optimize TPCL structure ***[DONE! Ver 0.0.1.7998 Alpha.1]***
 - [ ] Support **Linux** & **Mac Os**
 - [ ] Add **multi-mode** writeFile function
 - [ ] Add **multi-mode** readFile function
 - [ ] Add string lookup function
+- [ ] Optimize TPCL structure
 - [ ] Add **Windows** Http communication function
 - [ ] Update Https communication function
