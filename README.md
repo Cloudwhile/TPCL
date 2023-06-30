@@ -1,8 +1,7 @@
 <h1 align="center">TPCL(Tools Public Class Library)</h1>
 
-
 <div align="center">
-  <a href="mailto:3245567560@qq.com">
+  <a href="mailto:whitecat.this@gmail.com">
     <img src="https://img.shields.io/badge/AUTHOR-Cloudwhile-brightgreen" alt="AUTHOR">
   </a>
   <a href="https://github.com/Cloudwhile/TPCL/releases/latest">
@@ -15,16 +14,69 @@
 
 <div align="center">
   <h3>
+    <a>
+      💮Fast and easy to coding!🤍
+    </a>
+  </h3>
+  <h3>
     <a href="https://www.dofozero.top/tpcltools-public-class-library-for-cpp/">
       Website
     </a>
     <span> | </span>
-    <a href="https://github.com/Cloudwhile/TPCL/#tpcltools-public-class-library">
+    <a href="#description">
       Description
     </a>
     <span> | </span>
     <a href="https://github.com/Cloudwhile/TPCL/releases/tag/v0.0.1.6001-Alpha.1">
       Downloads
     </a>
+     <span> | </span>
+     <a href="#use-tpcl">
+       Use TPCL
+     </a>
   </h3>
+  <sub>
+    Available for Windows.
+  </sub>
 </div>
+
+<h2 align="center">Description</h2>
+Make coding C++ program more than faster and easier.
+
+<h2 align="center">Use TPCL</h2>
+
+
+You could [Browse here](https://www.dofozero.top/tpcltools-public-class-library-for-cpp/) to look for the details first.
+
+1. Use TPCL in your projects.
+  - Make sure that your compiler supports the ISO/C++11 standard.
+  - Make sure that the TPCL source file which you downloaded is complete.
+  - Unzip the TPCL source files to your project source file directory.
+
+2. Use ```#include "tpcl.h"``` in your project source file to use the functions in tpcl.
+
+3. Initializes (instantiates) the tools class to use the functions in the tools class. Like this:
+   ```C++
+   #include "tpcl.h"
+   #include <iostream>
+
+   using namesapce std;
+   int main(){
+     stdtool::tools tool;
+     //statements
+     retrun 0;
+   }
+   ```
+
+<h2 align="center">TODO</h2>
+
+- [x] Create TPCL project
+- [x] Add basic functions
+- [x] Published TPCL the first release
+- [ ] Optimize TPCL structure
+- [ ] Support **Linux** & **Mac Os**
+- [ ] Add **multi-mode** writeFile function
+- [ ] Add **multi-mode** readFile function
+- [ ] Add string lookup function
+- [ ] Add **Windows** Http communication function
+- [ ] Update Https communication function
