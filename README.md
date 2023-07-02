@@ -37,7 +37,9 @@
   </h3>
   <sub>
     Available for Windows.
-  </sub>
+    <br>
+    <a href="https://github.com/Cloudwhile/TPCL/">en-us</a> | <a href="https://github.com/Cloudwhile/TPCL/blob/master/zh-cn">中文</a>
+</sub>
 </div>
 
 <h2 align="center">Description</h2>

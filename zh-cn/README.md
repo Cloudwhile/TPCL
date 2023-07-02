@@ -37,6 +37,8 @@
   </h3>
   <sub>
     适用于 Windows。
+    <br>
+    <a href="https://github.com/Cloudwhile/TPCL/">en-us</a> | <a href="https://github.com/Cloudwhile/TPCL/blob/master/zh-cn">中文</a>
   </sub>
 </div>
 
