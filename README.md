@@ -64,7 +64,7 @@ You could [Browse here](https://www.dofozero.top/tpcltools-public-class-library-
    int main(){
      stdtool::tools tool;
      //statements
-     retrun 0;
+     return 0;
    }
    ```
 
