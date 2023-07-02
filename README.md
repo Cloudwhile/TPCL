@@ -45,21 +45,22 @@ Make coding C++ program more than faster and easier.
 
 <h2 align="center">Use TPCL</h2>
 
-
 You could [Browse here](https://www.dofozero.top/tpcltools-public-class-library-for-cpp/) to look for the details first.
 
 1. Use TPCL in your projects.
-  - Make sure that your compiler supports the ISO/C++11 standard.
-  - Make sure that the TPCL source file which you downloaded is complete.
-  - Unzip the TPCL source files to your project source file directory.
+   
+   - Make sure that your compiler supports the ISO/C++11 standard.
+   - Make sure that the TPCL source file which you downloaded is complete.
+   - Unzip the TPCL source files to your project source file directory.
 
 2. Use ```#include "tpcl.h"``` in your project source file to use the functions in tpcl.
 
 3. Initializes (instantiates) the tools class to use the functions in the tools class. Like this:
+   
    ```C++
    #include "tpcl.h"
    #include <iostream>
-
+   
    using namesapce std;
    int main(){
      stdtool::tools tool;
@@ -77,7 +78,8 @@ You could [Browse here](https://www.dofozero.top/tpcltools-public-class-library-
 - [ ] Support **Linux** & **Mac Os**
 - [ ] Add **multi-mode** writeFile function
 - [ ] Add **multi-mode** readFile function
-- [ ] Add string lookup function
+- [ ] Added **SQLite-based** local database read and write functions
+- [ ] Add **string lookup** function
 - [ ] Optimize TPCL structure
 - [ ] Add **Windows** Http communication function
 - [ ] Update Https communication function
