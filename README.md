@@ -73,10 +73,23 @@ You could [Browse here](https://www.dofozero.top/tpcltools-public-class-library-
 - [x] Create TPCL project
 - [x] Add basic functions
 - [x] Published TPCL the first release
+<<<<<<< Updated upstream
+=======
+- [x] Optimize TPCL structure ***[DONE! Ver 0.0.1.7998 Alpha.1]***
+- [x] Add **Windows** Ftp communication function
+- [x] Add **Basic multi-mode** writeFile function
+- [x] Add **Basic** readFile function
+>>>>>>> Stashed changes
 - [ ] Optimize TPCL structure
 - [ ] Support **Linux** & **Mac Os**
 - [ ] Add **multi-mode** writeFile function
 - [ ] Add **multi-mode** readFile function
+<<<<<<< Updated upstream
 - [ ] Add string lookup function
+=======
+- [ ] Add **SQLite-based** local database read and write functions
+- [ ] Add **string lookup** function
+- [ ] Optimize TPCL structure
+>>>>>>> Stashed changes
 - [ ] Add **Windows** Http communication function
 - [ ] Update Https communication function
