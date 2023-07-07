@@ -1,4 +1,4 @@
-// Tools Class Library (Version:ALPHA-0.0.1.7998) ALPHA TEST VERSION
+// Tools Class Library (Version:ALPHA-0.0.1.8658) ALPHA TEST VERSION
 // ALPHA TEST
 // PUBLISH BY 404 Software Studio https://www.dofozero.top
 // TPCL Copyright (C) 2023-2024 Cloudwhile. All rights reserved.
@@ -102,9 +102,13 @@ err::error::error(DEFINE_S& message, DEFINE& TYPE)
 {
 	DEFINE_S error_type = typeF(TYPE);
 
-	LPCWSTR MESSAGE = estringToLPCWSTR(message+"\nError Code:  " + error_type);
-
+	//LPCWSTR MESSAGE = estringToLPCWSTR(message+"\nError Code:  " + error_type);
+	char* MESSAGE = new char[strlen(message.c_str()) + strlen(error_type.c_str()) + 16];
+	strcpy(MESSAGE, message.c_str());
+	strcpy(MESSAGE, "\nError Code:  ");
+	strcpy(MESSAGE, error_type.c_str());
 	MessageBox(NULL, MESSAGE, TEXT("From System"), MB_OK | MB_ICONERROR);
+	delete[]MESSAGE;
 }
 
 err::error::~error()
@@ -120,7 +124,7 @@ bool err::error::write_log(DEFINE_S& messageOut,DEFINE& level)
 
 
 
-	LPCWSTR direc = L".\\log";
+	const char* direc = ".\\log";
 	string direcS = ".\\log";
 
 
