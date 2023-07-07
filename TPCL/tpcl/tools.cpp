@@ -1,4 +1,4 @@
-﻿// Tools Class Library (Version:ALPHA-0.0.1.7998) ALPHA TEST VERSION
+﻿// Tools Class Library (Version:ALPHA-0.0.1.8658) ALPHA TEST VERSION
 // ALPHA TEST
 // PUBLISH BY 404 Software Studio https://www.dofozero.top
 // TPCL Copyright (C) 2023-2024 Cloudwhile. All rights reserved.
@@ -30,9 +30,12 @@
 #include <string>
 #include <fstream>
 #include <cstdlib>
+#include <vector>
 #include <chrono>
 #include <ctime>
 #include <Windows.h>
+#include <WinInet.h>
+#pragma comment(lib, "WinInet.lib")
 
 
 
@@ -150,12 +153,12 @@ LPCWSTR stringToLPCWSTR(string origin)
 
 
 
-
 //Write File Function
-bool stdtool::tools::writeFile(char* FilePath, char* STR)
+bool stdtool::tools::writeFile(const char* FilePath, const char* STR)
 {
 	notice_str = (string)"[" + FilePath + (string)"]" + (string)" already exists!!! \nWant to cover it?";
-	LPCWSTR NSTR = stringToLPCWSTR(notice_str);
+	LPCSTR NSTR = notice_str.c_str();
+	//LPCWSTR NSTR = stringToLPCWSTR(notice_str);
 	time_count();
 	ifs.open(FilePath);
 	if (ifs.is_open()) {
@@ -169,7 +172,7 @@ bool stdtool::tools::writeFile(char* FilePath, char* STR)
 	ifs.close();
 
 	ofs.open(FilePath, ios_base::out | ios_base::app);
-	ofs << STR << '\n';
+	ofs << STR;
 	ofs.close();
 
 	cout << "File Output Successfully" << endl;
@@ -181,10 +184,11 @@ bool stdtool::tools::writeFile(char* FilePath, char* STR)
 	return false;
 }
 
-bool stdtool::tools::writeFile(string cFilePath, string CSTR)
+bool stdtool::tools::writeFile(const string cFilePath, const string CSTR)
 {
 	notice_str = (string)"[" + cFilePath + (string)"]" + (string)" already exists!!! \nWant to cover it?";
-	LPCWSTR NSTR = stringToLPCWSTR(notice_str);
+	LPCSTR NSTR= notice_str.c_str();
+	//LPCWSTR NSTR = stringToLPCWSTR(notice_str);
 	time_count();
 	ifs.open(cFilePath);
 	if (ifs.is_open()) {
@@ -198,7 +202,7 @@ bool stdtool::tools::writeFile(string cFilePath, string CSTR)
 	ifs.close();
 
 	ofs.open(cFilePath, ios_base::out | ios_base::app);
-	ofs << CSTR << '\n';
+	ofs << CSTR;
 	ofs.close();
 
 	//delete cache
@@ -210,10 +214,11 @@ bool stdtool::tools::writeFile(string cFilePath, string CSTR)
 	return false;
 }
 
-bool stdtool::tools::writeFile(char* FilePath, string CSTR)
+bool stdtool::tools::writeFile(const char* FilePath, const string CSTR)
 {
 	notice_str = (string)"[" + FilePath + (string)"]" + (string)" already exists!!! \nWant to cover it?";
-	LPCWSTR NSTR = stringToLPCWSTR(notice_str);
+	LPCSTR NSTR = notice_str.c_str();
+	//LPCWSTR NSTR = stringToLPCWSTR(notice_str);
 	ifs.open(FilePath);
 	if (ifs.is_open()) {
 		int a = MessageBox(NULL, NSTR, TEXT("Notice"), MB_ICONINFORMATION | MB_OKCANCEL);
@@ -226,7 +231,7 @@ bool stdtool::tools::writeFile(char* FilePath, string CSTR)
 	ifs.close();
 
 	ofs.open(FilePath, ios_base::out | ios_base::app);
-	ofs << CSTR << '\n';
+	ofs << CSTR;
 	ofs.close();
 
 	cout << "File Output Successfully" << endl;
@@ -238,10 +243,11 @@ bool stdtool::tools::writeFile(char* FilePath, string CSTR)
 	return false;
 }
 
-bool stdtool::tools::writeFile(string cFilePath, char* STR)
+bool stdtool::tools::writeFile(const string cFilePath, const char* STR)
 {
 	notice_str = (string)"[" + cFilePath + (string)"]" + (string)" already exists!!! \nWant to cover it?";
-	LPCWSTR NSTR = stringToLPCWSTR(notice_str);
+	LPCSTR NSTR = notice_str.c_str();
+	//LPCWSTR NSTR = stringToLPCWSTR(notice_str);
 	time_count();
 	ifs.open(cFilePath);
 	if (ifs.is_open()) {
@@ -255,7 +261,7 @@ bool stdtool::tools::writeFile(string cFilePath, char* STR)
 	ifs.close();
 
 	ofs.open(cFilePath, ios_base::out | ios_base::app);
-	ofs << STR << '\n';
+	ofs << STR;
 	ofs.close();
 
 	cout << "File Output Successfully" << endl;
@@ -267,20 +273,24 @@ bool stdtool::tools::writeFile(string cFilePath, char* STR)
 	return false;
 }
 
-bool stdtool::tools::writeFile(string cFilePath, string CSTR, int type)
+bool stdtool::tools::writeFile(const string cFilePath, string CSTR, const int type)
 {
-	if (type == 1) {
-		writeFile_q(cFilePath, CSTR);
-	}
-
+	writeFile_q(cFilePath, CSTR, type);
 	return false;
 }
 
 
-bool stdtool::tools::writeFile_q(string cFilePath, string CSTR) {
+bool stdtool::tools::writeFile_q(string cFilePath, string CSTR, const int type) {
 	time_count();
-	ofs.open(cFilePath,ios_base::out | ios_base::app);
-	ofs << CSTR;
+	
+	if (type == ADM) {
+		ofs.open(cFilePath, ios_base::out | ios_base::app);
+		ofs << CSTR;
+	}
+	else if (type == CVM) {
+		ofs.open(cFilePath, ios_base::out);
+		ofs << CSTR;
+	}
 	ofs.close();
 	return false;
 }
@@ -317,6 +327,32 @@ void stdtool::tools::getPwd(string& str, int size)
 	delete[] password; // delete cache
 	cout << endl;
 }
+
+vector<string> stdtool::tools::readFile(const char* FilePath)
+{
+
+	vector<string> vArray;
+	string temp;
+	ifs.open(FilePath);
+	
+	if (!ifs.is_open()) {
+		string str = FilePath + (string)" is not found!!!";
+		LPCSTR NSTR = str.c_str();
+		//LPCWSTR NSTR = stringToLPCWSTR(str);
+		MessageBox(NULL, NSTR, TEXT("FATAL ERROR"), MB_ICONINFORMATION | MB_OK);
+		return vArray;
+	}
+	
+	
+
+	while (!ifs.eof()) {
+		while (getline(ifs, temp)) {
+			vArray.push_back(temp+'\n');
+		}
+	}
+	return vArray;
+}
+
 
 
 
@@ -501,4 +537,336 @@ float stdini::readConfig::ReadFloat(const char* section, const char* item, const
 		return default_Value;
 	}
 	return atof(it_item->second.c_str());
+}
+
+
+void ftpShowError(const char* text)
+{
+	char szErr[MAX_PATH] = { 0 };
+	::wsprintf(szErr, "%s Error[%d]\n", text, ::GetLastError());
+#ifdef _DEBUG
+	::MessageBox(NULL, szErr, "ERROR", MB_OK);
+#endif
+}
+
+
+BOOL network::ftp::ftpUpload(CWORD ftpAddress, CWORD fileName, CWORD uploadStr)
+{	
+	char* fullUrl = new char[strlen(ftpAddress) + strlen(fileName)+3];
+	strcpy(fullUrl, ftpAddress);
+	strcpy(fullUrl, "/");
+	strcpy(fullUrl, fileName);
+
+	if (FALSE == ftpUp(fullUrl, (BYTE*)uploadStr, strlen(uploadStr)))
+	{
+		cout << "FTP Upload Error." << endl;
+	}
+
+	cout << "FTP Upload OK." << endl;
+	system("pause");
+	delete[]fullUrl;
+	return 0;
+}
+
+BOOL network::ftp::ftpDownload(CWORD ftpAddress, CWORD ftpFileName)
+{
+	BYTE* pDownloadData = NULL;
+	DWORD dwDownloadDataSize = 0;
+	char* fullUrl = new char[strlen(ftpAddress) + strlen(ftpFileName) + 3];
+	strcpy(fullUrl, ftpAddress);
+	strcpy(fullUrl, "/");
+	strcpy(fullUrl, ftpFileName);
+
+	if (FALSE == ftpDown(fullUrl, &pDownloadData, &dwDownloadDataSize))
+	{
+		cout << "FTP Download Error!" << endl;
+	}
+	
+	ftpSave(ftpFileName, pDownloadData, dwDownloadDataSize);
+	
+	delete[]pDownloadData;
+	pDownloadData = NULL;
+	cout << "FTP Download OK." << endl;
+	system("pause");
+	delete[]fullUrl;
+	return 0;
+}
+
+BOOL network::ftp::ftpDownload(CWORD ftpAddress, CWORD ftpFileName, CWORD downloadName)
+{
+	BYTE* pDownloadData = NULL;
+	DWORD dwDownloadDataSize = 0;
+	char* fullUrl = new char[strlen(ftpAddress) + strlen(ftpFileName) + 3];
+	strcpy(fullUrl, ftpAddress);
+	strcpy(fullUrl, "/");
+	strcpy(fullUrl, ftpFileName);
+
+	if (FALSE == ftpDown(fullUrl, &pDownloadData, &dwDownloadDataSize))
+	{
+		cout << "FTP Download Error!" << endl;
+	}
+
+	ftpSave(downloadName, pDownloadData, dwDownloadDataSize);
+
+	delete[]pDownloadData;
+	pDownloadData = NULL;
+	cout << "FTP Download OK." << endl;
+	system("pause");
+	delete[]fullUrl;
+	return 0;
+}
+
+BOOL network::ftp::ftpSave(CWORD fileName, BYTE* data, DWORD dataSize)
+{
+	HANDLE hFile = ::CreateFile(fileName, GENERIC_READ | GENERIC_WRITE,
+		FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, CREATE_ALWAYS,
+		FILE_ATTRIBUTE_ARCHIVE, NULL);
+	if (INVALID_HANDLE_VALUE == hFile)
+	{
+		ftpShowError("CreateFile");
+		return FALSE;
+	}
+
+	DWORD dwRet = 0;
+	::WriteFile(hFile, data, dataSize, &dwRet, NULL);
+
+	::CloseHandle(hFile);
+	return TRUE;
+}
+
+BOOL network::ftp::ftpUrlCk(CWORD url, char* scheme, char* hostName, char* userName, char* pwd, char* urlPath, char* extraInfo, DWORD bufferSize)
+{
+	BOOL bRet = FALSE;
+	URL_COMPONENTS uc = { 0 };
+
+	::RtlZeroMemory(&uc, sizeof(uc));
+	::RtlZeroMemory(scheme, bufferSize);
+	::RtlZeroMemory(hostName, bufferSize);
+	::RtlZeroMemory(userName, bufferSize);
+	::RtlZeroMemory(pwd, bufferSize);
+	::RtlZeroMemory(urlPath, bufferSize);
+	::RtlZeroMemory(extraInfo, bufferSize);
+
+	uc.dwStructSize = sizeof(uc);
+	uc.dwSchemeLength = bufferSize - 1;
+	uc.dwHostNameLength = bufferSize - 1;
+	uc.dwUserNameLength = bufferSize - 1;
+	uc.dwPasswordLength = bufferSize - 1;
+	uc.dwUrlPathLength = bufferSize - 1;
+	uc.dwExtraInfoLength = bufferSize - 1;
+	uc.lpszScheme = scheme;
+	uc.lpszHostName = hostName;
+	uc.lpszUserName = userName;
+	uc.lpszPassword = pwd;
+	uc.lpszUrlPath = urlPath;
+	uc.lpszExtraInfo = extraInfo;
+
+	bRet = ::InternetCrackUrl(url, 0, 0, &uc);
+	if (FALSE == bRet)
+	{
+		ftpShowError("InternetCrackUrl");
+		return bRet;
+	}
+
+	return bRet;
+}
+
+BOOL network::ftp::ftpDown(CWORD downloadUrl, BYTE** downloadData, DWORD* downloadDataSize)
+{
+	char scheme[MAX_PATH] = { 0 };
+	char hostName[MAX_PATH] = { 0 };
+	char userName[MAX_PATH] = { 0 };
+	char pwd[MAX_PATH] = { 0 };
+	char urlPath[MAX_PATH] = { 0 };
+	char extraInfo[MAX_PATH] = { 0 };
+	::RtlZeroMemory(scheme, MAX_PATH);
+	::RtlZeroMemory(hostName, MAX_PATH);
+	::RtlZeroMemory(userName, MAX_PATH);
+	::RtlZeroMemory(pwd, MAX_PATH);
+	::RtlZeroMemory(urlPath, MAX_PATH);
+	::RtlZeroMemory(extraInfo, MAX_PATH);
+	
+	if (FALSE == ftpUrlCk(downloadUrl, scheme, hostName, userName, pwd, urlPath, extraInfo, MAX_PATH))
+	{
+		return FALSE;
+	}
+	if (0 < ::lstrlen(extraInfo))
+	{
+		
+		::lstrcat(urlPath, extraInfo);
+	}
+
+	HINTERNET hInternet = NULL;
+	HINTERNET hConnect = NULL;
+	HINTERNET hFTPFile = NULL;
+	BYTE* pDownloadData = NULL;
+	DWORD dwDownloadDataSize = 0;
+	DWORD dwBufferSize = 4096;
+	BYTE* pBuf = NULL;
+	DWORD dwBytesReturn = 0;
+	DWORD dwOffset = 0;
+	BOOL bRet = FALSE;
+
+	do
+	{
+		
+		hInternet = ::InternetOpen("WinInet Ftp Download V1.0", INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0);
+		if (NULL == hInternet)
+		{
+			ftpShowError("InternetOpen");
+			break;
+		}
+		
+		hConnect = ::InternetConnect(hInternet, hostName, INTERNET_INVALID_PORT_NUMBER, userName, pwd, INTERNET_SERVICE_FTP, INTERNET_FLAG_PASSIVE, 0);
+		if (NULL == hConnect)
+		{
+			ftpShowError("InternetConnect");
+			break;
+		}
+
+		hFTPFile = ::FtpOpenFile(hConnect, urlPath, GENERIC_READ, FTP_TRANSFER_TYPE_BINARY | INTERNET_FLAG_RELOAD, NULL);
+		if (NULL == hFTPFile)
+		{
+			ftpShowError("FtpOpenFile");
+			break;;
+		}
+
+		dwDownloadDataSize = ::FtpGetFileSize(hFTPFile, NULL);
+
+		pDownloadData = new BYTE[dwDownloadDataSize];
+		if (NULL == pDownloadData)
+		{
+			break;
+		}
+		::RtlZeroMemory(pDownloadData, dwDownloadDataSize);
+		pBuf = new BYTE[dwBufferSize];
+		if (NULL == pBuf)
+		{
+			break;
+		}
+		::RtlZeroMemory(pBuf, dwBufferSize);
+
+		do
+		{
+			bRet = ::InternetReadFile(hFTPFile, pBuf, dwBufferSize, &dwBytesReturn);
+			if (FALSE == bRet)
+			{
+				ftpShowError("InternetReadFile");
+				break;
+			}
+			::RtlCopyMemory((pDownloadData + dwOffset), pBuf, dwBytesReturn);
+			dwOffset = dwOffset + dwBytesReturn;
+
+		} while (dwDownloadDataSize > dwOffset);
+
+	} while (FALSE);
+
+	if (FALSE == bRet)
+	{
+		delete[]pDownloadData;
+		pDownloadData = NULL;
+		dwDownloadDataSize = 0;
+	}
+	*downloadData = pDownloadData;
+	*downloadDataSize = dwDownloadDataSize;
+
+	if (NULL != pBuf)
+	{
+		delete[]pBuf;
+		pBuf = NULL;
+	}
+	if (NULL != hFTPFile)
+	{
+		::InternetCloseHandle(hFTPFile);
+	}
+	if (NULL != hConnect)
+	{
+		::InternetCloseHandle(hConnect);
+	}
+	if (NULL != hInternet)
+	{
+		::InternetCloseHandle(hInternet);
+	}
+
+	return bRet;
+}
+
+BOOL network::ftp::ftpUp(CWORD uploadUrl, BYTE* uploadData, DWORD uploadDataSize)
+{
+	char scheme[MAX_PATH] = { 0 };
+	char hostName[MAX_PATH] = { 0 };
+	char userName[MAX_PATH] = { 0 };
+	char pwd[MAX_PATH] = { 0 };
+	char urlPath[MAX_PATH] = { 0 };
+	char extraInfo[MAX_PATH] = { 0 };
+	::RtlZeroMemory(scheme, MAX_PATH);
+	::RtlZeroMemory(hostName, MAX_PATH);
+	::RtlZeroMemory(userName, MAX_PATH);
+	::RtlZeroMemory(pwd, MAX_PATH);
+	::RtlZeroMemory(urlPath, MAX_PATH);
+	::RtlZeroMemory(extraInfo, MAX_PATH);
+	
+	if (FALSE == ftpUrlCk(uploadUrl, scheme, hostName, userName, pwd, urlPath, extraInfo, MAX_PATH))
+	{
+		return FALSE;
+	}
+	if (0 < ::lstrlen(extraInfo))
+	{
+
+		::lstrcat(urlPath, extraInfo);
+	}
+
+	HINTERNET hInternet = NULL;
+	HINTERNET hConnect = NULL;
+	HINTERNET hFTPFile = NULL;
+	DWORD dwBytesReturn = 0;
+	BOOL bRet = FALSE;
+
+	do
+	{
+		
+		hInternet = ::InternetOpen("WinInet Ftp Upload V1.0", INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0);
+		if (NULL == hInternet)
+		{
+			ftpShowError("InternetOpen");
+			break;
+		}
+		
+		hConnect = ::InternetConnect(hInternet, hostName, INTERNET_INVALID_PORT_NUMBER, userName, pwd, INTERNET_SERVICE_FTP, INTERNET_FLAG_PASSIVE, 0);
+		if (NULL == hConnect)
+		{
+			ftpShowError("InternetConnect");
+			break;
+		}
+		
+		hFTPFile = ::FtpOpenFile(hConnect, urlPath, GENERIC_WRITE, FTP_TRANSFER_TYPE_BINARY | INTERNET_FLAG_RELOAD, NULL);
+		if (NULL == hFTPFile)
+		{
+			ftpShowError("FtpOpenFile");
+			break;;
+		}
+		
+		bRet = ::InternetWriteFile(hFTPFile, uploadData, uploadDataSize, &dwBytesReturn);
+		if (FALSE == bRet)
+		{
+			break;
+		}
+
+	} while (FALSE);
+
+	
+	if (NULL != hFTPFile)
+	{
+		::InternetCloseHandle(hFTPFile);
+	}
+	if (NULL != hConnect)
+	{
+		::InternetCloseHandle(hConnect);
+	}
+	if (NULL != hInternet)
+	{
+		::InternetCloseHandle(hInternet);
+	}
+
+	return bRet;
 }

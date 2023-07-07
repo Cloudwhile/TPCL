@@ -1,4 +1,4 @@
-﻿// Tools Class Library (Version:ALPHA-0.0.1.7998) ALPHA TEST VERSION
+﻿// Tools Class Library (Version:ALPHA-0.0.1.8658) ALPHA TEST VERSION
 // ALPHA TEST
 // PUBLISH BY 404 Software Studio https://www.dofozero.top
 // TPCL Copyright (C) 2023-2024 Cloudwhile. All rights reserved.
@@ -31,6 +31,7 @@
 
 #include <iostream>
 #include <map>
+#include <vector>
 
 
 
@@ -40,20 +41,25 @@ using namespace std;
 
 
 namespace stdtool {
+	typedef const int INT;
+	INT CVM = 1;
+	INT ADM = 2;
 	class tools {
 	public:
 		tools();
 		~tools();
 		char* getTime();
 		//write_file function
-		bool writeFile(char* FilePath, char* STR);
-		bool writeFile(string cFilePath, string CSTR);
-		bool writeFile(char* FilePath, string CSTR);
-		bool writeFile(string cFilePath, char* STR);
-		bool writeFile(string cFilePath, string CSTR, int type);
+		bool writeFile(const char* FilePath, const char* STR);
+		bool writeFile(const string cFilePath, const string CSTR);
+		bool writeFile(const char* FilePath, const string CSTR);
+		bool writeFile(const string cFilePath, const char* STR);
+		bool writeFile(const string cFilePath, const string CSTR, const int type);
 
 		//password for console
 		static void getPwd(string& str, int size);
+		vector<string> readFile(const char* FilePath);
+
 
 	private:
 		int i = 0;
@@ -75,7 +81,7 @@ namespace stdtool {
 
 		int readini();
 		void time_count();
-		bool writeFile_q(string cFilePath, string CSTR);
+		bool writeFile_q(const string cFilePath, string CSTR, const int type);
 	};
 }
 
@@ -99,10 +105,48 @@ namespace stdini
 		bool IsCommentChar(char c);
 		void Trim(std::string& str);
 		bool AnalyseLine(const std::string& line, std::string& section, std::string& key, std::string& value);
-
-	private:
 		//std::map<std::string, std::string> settings_;
 		std::map<std::string, std::map<std::string, std::string> >settings_;
+	};
+}
+
+
+
+namespace network {
+	typedef int		BOOL;
+	//typedef const string	WORD;
+
+	typedef const char*		CWORD;
+	typedef unsigned char       BYTE;
+	typedef unsigned long       DWORD;
+
+
+	class ftp {
+
+	public:
+		BOOL ftpUpload(CWORD ftpAddress, CWORD fileName, CWORD uploadStr);
+		BOOL ftpDownload(CWORD ftpAddress, CWORD ftpFileName);
+		BOOL ftpDownload(CWORD ftpAddress, CWORD ftpFileName, CWORD downloadName);
+
+	private:
+		BOOL ftpSave(CWORD fileName, BYTE* data, DWORD dataSize);
+		BOOL ftpUrlCk(
+			CWORD url,
+			char* scheme,
+			char* hostName,
+			char* userName,
+			char* pwd,
+			char* urlPath,
+			char* extraInfo,
+			DWORD dwBufferSize);
+		BOOL ftpDown(
+			CWORD downloadUrl,
+			BYTE** downloadData,
+			DWORD* downloadDataSize);
+		BOOL ftpUp(
+			CWORD uploadUrl,
+			BYTE* uploadData,
+			DWORD uploadDataSize);
 	};
 }
 #endif
