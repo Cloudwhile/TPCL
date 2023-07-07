@@ -77,6 +77,10 @@
 - [x] 加入基础功能
 - [x] 发布 TPCL第一个版本
 - [x] 优化 TPCL的结构 ***[已完成！ Ver 0.0.1.7998 Alpha.1]***
+- [x] 添加 **Windows** Ftp 通信功能
+- [x] 添加 writeFile **基本多功能**
+- [x] 添加 **基本** readFile 功能
+- [ ] 优化 TPCL 结构
 - [ ] 支持 **Linux** & **Mac Os** 系统
 - [ ] 添加 writeFile函数的**多功能模式**
 - [ ] 添加 readFile及 readFile函数**的多功能模式**

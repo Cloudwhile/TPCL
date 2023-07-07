@@ -1,4 +1,4 @@
-// Tools Class Library (Version:ALPHA-0.0.1.8658) ALPHA TEST VERSION
+﻿// Tools Class Library (Version:ALPHA-0.0.1.8658) ALPHA TEST VERSION
 // ALPHA TEST
 // PUBLISH BY 404 Software Studio https://www.dofozero.top
 // TPCL Copyright (C) 2023-2024 Cloudwhile. All rights reserved.
@@ -35,7 +35,6 @@
 
 
 
-
 using namespace std;
 
 
@@ -51,7 +50,6 @@ namespace stdtool {
 		~tools();
 		char* getTime();
 		//write_file function
-    
 		bool writeFile(const char* FilePath, const char* STR);
 		bool writeFile(const string cFilePath, const string CSTR);
 		bool writeFile(const char* FilePath, const string CSTR);
@@ -61,6 +59,7 @@ namespace stdtool {
 		//password for console
 		static void getPwd(string& str, int size);
 		vector<string> readFile(const char* FilePath);
+
 
 	private:
 		int i = 0;
@@ -107,7 +106,6 @@ namespace stdini
 		void Trim(std::string& str);
 		bool AnalyseLine(const std::string& line, std::string& section, std::string& key, std::string& value);
 		//std::map<std::string, std::string> settings_;
-    
 		std::map<std::string, std::map<std::string, std::string> >settings_;
 	};
 }

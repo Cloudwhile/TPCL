@@ -1,4 +1,4 @@
-// Tools Class Library (Version:ALPHA-0.0.1.8658) ALPHA TEST VERSION
+﻿// Tools Class Library (Version:ALPHA-0.0.1.8658) ALPHA TEST VERSION
 // ALPHA TEST
 // PUBLISH BY 404 Software Studio https://www.dofozero.top
 // TPCL Copyright (C) 2023-2024 Cloudwhile. All rights reserved.
@@ -36,9 +36,6 @@
 #include <Windows.h>
 #include <WinInet.h>
 #pragma comment(lib, "WinInet.lib")
-#include <chrono>
-#include <ctime>
-#include <Windows.h>
 
 
 
@@ -162,7 +159,6 @@ bool stdtool::tools::writeFile(const char* FilePath, const char* STR)
 	notice_str = (string)"[" + FilePath + (string)"]" + (string)" already exists!!! \nWant to cover it?";
 	LPCSTR NSTR = notice_str.c_str();
 	//LPCWSTR NSTR = stringToLPCWSTR(notice_str);
-  
 	time_count();
 	ifs.open(FilePath);
 	if (ifs.is_open()) {
@@ -177,7 +173,6 @@ bool stdtool::tools::writeFile(const char* FilePath, const char* STR)
 
 	ofs.open(FilePath, ios_base::out | ios_base::app);
 	ofs << STR;
-
 	ofs.close();
 
 	cout << "File Output Successfully" << endl;
@@ -224,7 +219,6 @@ bool stdtool::tools::writeFile(const char* FilePath, const string CSTR)
 	notice_str = (string)"[" + FilePath + (string)"]" + (string)" already exists!!! \nWant to cover it?";
 	LPCSTR NSTR = notice_str.c_str();
 	//LPCWSTR NSTR = stringToLPCWSTR(notice_str);
-
 	ifs.open(FilePath);
 	if (ifs.is_open()) {
 		int a = MessageBox(NULL, NSTR, TEXT("Notice"), MB_ICONINFORMATION | MB_OKCANCEL);
@@ -254,7 +248,6 @@ bool stdtool::tools::writeFile(const string cFilePath, const char* STR)
 	notice_str = (string)"[" + cFilePath + (string)"]" + (string)" already exists!!! \nWant to cover it?";
 	LPCSTR NSTR = notice_str.c_str();
 	//LPCWSTR NSTR = stringToLPCWSTR(notice_str);
-
 	time_count();
 	ifs.open(cFilePath);
 	if (ifs.is_open()) {
@@ -335,7 +328,6 @@ void stdtool::tools::getPwd(string& str, int size)
 	cout << endl;
 }
 
-
 vector<string> stdtool::tools::readFile(const char* FilePath)
 {
 
@@ -360,6 +352,7 @@ vector<string> stdtool::tools::readFile(const char* FilePath)
 	}
 	return vArray;
 }
+
 
 
 

@@ -124,11 +124,11 @@ bool err::error::write_log(DEFINE_S& messageOut,DEFINE& level)
 
 
 
-
 	const char* direc = ".\\log";
-	//LPCWSTR direc = L".\\log";
+	string direcS = ".\\log";
 
-	if (dirExists(direc)) {
+
+	if (dirExists(direcS)) {
 
 		bool flag = CreateDirectory(direc, NULL);
 		if (flag == 0) {
@@ -137,7 +137,7 @@ bool err::error::write_log(DEFINE_S& messageOut,DEFINE& level)
 		}
 	}
 
-	DEFINE_S LOG_PATH = direc + '\\' + timec + (string)".log";
+	DEFINE_S LOG_PATH = direcS + '\\' + timec + (string)".log";
 	
 	
 	char time_full[100] = { 0 };
