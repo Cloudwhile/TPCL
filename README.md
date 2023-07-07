@@ -5,7 +5,7 @@
     <img src="https://img.shields.io/badge/AUTHOR-Cloudwhile-brightgreen" alt="AUTHOR">
   </a>
   <a href="https://github.com/Cloudwhile/TPCL/releases/latest">
-    <img src="https://img.shields.io/badge/VERSION-v0.0.1.6001_Alpha.1-ff69b4" alt="Latest Download">
+    <img src="https://img.shields.io/badge/VERSION-v0.0.1.7998_Alpha.1-ff69b4" alt="Latest Download">
   </a>
   <a href="https://github.com/Cloudwhile/TPCL/blob/master/LICENSE">
     <img src="https://img.shields.io/badge/LICENSE-Apache_2.0-blue" alt="LICENSE">
@@ -37,7 +37,9 @@
   </h3>
   <sub>
     Available for Windows.
-  </sub>
+    <br>
+    <a href="https://github.com/Cloudwhile/TPCL/">en-us</a> | <a href="https://github.com/Cloudwhile/TPCL/blob/master/zh-cn">中文</a>
+</sub>
 </div>
 
 <h2 align="center">Description</h2>
@@ -45,26 +47,27 @@ Make coding C++ program more than faster and easier.
 
 <h2 align="center">Use TPCL</h2>
 
-
 You could [Browse here](https://www.dofozero.top/tpcltools-public-class-library-for-cpp/) to look for the details first.
 
 1. Use TPCL in your projects.
-  - Make sure that your compiler supports the ISO/C++11 standard.
-  - Make sure that the TPCL source file which you downloaded is complete.
-  - Unzip the TPCL source files to your project source file directory.
+   
+   - Make sure that your compiler supports the ISO/C++11 standard.
+   - Make sure that the TPCL source file which you downloaded is complete.
+   - Unzip the TPCL source files to your project source file directory.
 
 2. Use ```#include "tpcl.h"``` in your project source file to use the functions in tpcl.
 
 3. Initializes (instantiates) the tools class to use the functions in the tools class. Like this:
+   
    ```C++
    #include "tpcl.h"
    #include <iostream>
-
+   
    using namesapce std;
    int main(){
      stdtool::tools tool;
      //statements
-     retrun 0;
+     return 0;
    }
    ```
 
@@ -73,23 +76,17 @@ You could [Browse here](https://www.dofozero.top/tpcltools-public-class-library-
 - [x] Create TPCL project
 - [x] Add basic functions
 - [x] Published TPCL the first release
-<<<<<<< Updated upstream
-=======
 - [x] Optimize TPCL structure ***[DONE! Ver 0.0.1.7998 Alpha.1]***
 - [x] Add **Windows** Ftp communication function
 - [x] Add **Basic multi-mode** writeFile function
 - [x] Add **Basic** readFile function
->>>>>>> Stashed changes
 - [ ] Optimize TPCL structure
 - [ ] Support **Linux** & **Mac Os**
 - [ ] Add **multi-mode** writeFile function
 - [ ] Add **multi-mode** readFile function
-<<<<<<< Updated upstream
 - [ ] Add string lookup function
-=======
 - [ ] Add **SQLite-based** local database read and write functions
 - [ ] Add **string lookup** function
 - [ ] Optimize TPCL structure
->>>>>>> Stashed changes
 - [ ] Add **Windows** Http communication function
 - [ ] Update Https communication function
