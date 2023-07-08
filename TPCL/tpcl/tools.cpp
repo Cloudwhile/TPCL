@@ -1,25 +1,25 @@
-﻿// Tools Class Library (Version:ALPHA-0.0.1.8658) ALPHA TEST VERSION
-// ALPHA TEST
-// PUBLISH BY 404 Software Studio https://www.dofozero.top
-// TPCL Copyright (C) 2023-2024 Cloudwhile. All rights reserved.
-// Author: Cloudwhile  <whitecat.this@gmail.com>
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
+﻿/*  Tools Class Library(Version:ALPHA - 0.0.1.8672) ALPHA TEST VERSION
+	ALPHA TEST
+	PUBLISH BY 404 Software Studio https://www.dofozero.top
+	TPCL Copyright (C) 2023-2024 Cloudwhile. All rights reserved.
+	Author: Cloudwhile  <whitecat.this@gmail.com>
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
 
-// http ://www.apache.org/licenses/LICENSE-2.0
+	http ://www.apache.org/licenses/LICENSE-2.0
 
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-// Description:
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+	Description:
 
 
 
-// Create:2023.5.23
-
+	Create:2023.5.23
+*/
 #include "tools.h"
 
 
@@ -32,6 +32,7 @@
 #include <cstdlib>
 #include <vector>
 #include <chrono>
+#include <iomanip>
 #include <ctime>
 #include <Windows.h>
 #include <WinInet.h>
@@ -353,6 +354,38 @@ vector<string> stdtool::tools::readFile(const char* FilePath)
 	return vArray;
 }
 
+bool stdtool::tools::setColor(INT color)
+{
+	if (color >= 0 && color <= 15) {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
+	}
+	else {
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+	}
+	return false;
+}
+
+bool stdtool::tools::bar(const double process)
+{
+	int block = 100;
+	if (process >= 100) {
+		cout << "\rProcessed![100%]";
+		for (int i = 0; i <= 100; i++) {
+			std::cout << "█";
+			Sleep(15);
+		}
+	}
+	else
+	{
+		cout << "\rProcessing[" << setw(5) << setprecision(4) << process << "%]";
+		for (int i = 0; i <= (int)process; i++) {
+			std::cout << "█";
+			Sleep(15);
+		}
+	}
+	return false;
+}
+
 
 
 
@@ -373,7 +406,7 @@ bool stdini::readConfig::IsCommentChar(char c)
 	}
 }
 
-void stdini::readConfig::Trim(std::string& str)
+void stdini::readConfig::Trim(string& str)
 {
 	if (str.empty())
 	{
@@ -400,7 +433,7 @@ void stdini::readConfig::Trim(std::string& str)
 	str = str.substr(start_pos, end_pos - start_pos + 1);
 }
 
-bool stdini::readConfig::AnalyseLine(const std::string& line, std::string& section, std::string& key, std::string& value)
+bool stdini::readConfig::AnalyseLine(const string& line, string& section, string& key, string& value)
 {
 	if (line.empty())
 		return false;
@@ -439,19 +472,19 @@ bool stdini::readConfig::AnalyseLine(const std::string& line, std::string& secti
 	return true;
 }
 
-bool stdini::readConfig::ReadConfig(const std::string& fileName)
+bool stdini::readConfig::ReadConfig(const string& fileName)
 {
 	settings_.clear();
-	std::ifstream infile(fileName.c_str());//The constructor calls open by default, so you can omit it
+	ifstream infile(fileName.c_str());//The constructor calls open by default, so you can omit it
 	//std::ifstream infile;
 	//infile.open(fileName.c_str());
 	//bool ret = infile.is_open()
 	if (!infile) {
 		return false;
 	}
-	std::string line, key, value, section;
-	std::map<std::string, std::string> k_v;
-	std::map<std::string, std::map<std::string, std::string> >::iterator it;
+	string line, key, value, section;
+	map<string, string> k_v;
+	map<string, map<string, string> >::iterator it;
 	while (getline(infile, line))
 	{
 		if (AnalyseLine(line, section, key, value))
@@ -475,14 +508,14 @@ bool stdini::readConfig::ReadConfig(const std::string& fileName)
 	return true;
 }
 
-std::string stdini::readConfig::ReadString(const char* section, const char* item, const char* default_Value)
+string stdini::readConfig::ReadString(const char* section, const char* item, const char* default_Value)
 {
-	std::string tmp_s(section);
-	std::string tmp_i(item);
-	std::string def(default_Value);
-	std::map<std::string, std::string> k_v;
-	std::map<std::string, std::string>::iterator it_item;
-	std::map<std::string, std::map<std::string, std::string> >::iterator it;
+	string tmp_s(section);
+	string tmp_i(item);
+	string def(default_Value);
+	map<string, string> k_v;
+	map<string, string>::iterator it_item;
+	map<string, map<string, string> >::iterator it;
 	it = settings_.find(tmp_s);
 	if (it == settings_.end())
 	{
@@ -499,11 +532,11 @@ std::string stdini::readConfig::ReadString(const char* section, const char* item
 
 int stdini::readConfig::ReadInt(const char* section, const char* item, const int& default_Value)
 {
-	std::string tmp_s(section);
-	std::string tmp_i(item);
-	std::map<std::string, std::string> k_v;
-	std::map<std::string, std::string>::iterator it_item;
-	std::map<std::string, std::map<std::string, std::string> >::iterator it;
+	string tmp_s(section);
+	string tmp_i(item);
+	map<string, string> k_v;
+	map<string, string>::iterator it_item;
+	map<string, map<string, string> >::iterator it;
 	it = settings_.find(tmp_s);
 	if (it == settings_.end())
 	{
@@ -520,11 +553,11 @@ int stdini::readConfig::ReadInt(const char* section, const char* item, const int
 
 float stdini::readConfig::ReadFloat(const char* section, const char* item, const float& default_Value)
 {
-	std::string tmp_s(section);
-	std::string tmp_i(item);
-	std::map<std::string, std::string> k_v;
-	std::map<std::string, std::string>::iterator it_item;
-	std::map<std::string, std::map<std::string, std::string> >::iterator it;
+	string tmp_s(section);
+	string tmp_i(item);
+	map<string, string> k_v;
+	map<string, string>::iterator it_item;
+	map<string, map<string, string> >::iterator it;
 	it = settings_.find(tmp_s);
 	if (it == settings_.end())
 	{
@@ -554,9 +587,8 @@ BOOL network::ftp::ftpUpload(CWORD ftpAddress, CWORD fileName, CWORD uploadStr)
 {	
 	char* fullUrl = new char[strlen(ftpAddress) + strlen(fileName)+3];
 	strcpy(fullUrl, ftpAddress);
-	strcpy(fullUrl, "/");
-	strcpy(fullUrl, fileName);
-
+	strcat(fullUrl, "/");
+	strcat(fullUrl, fileName);
 	if (FALSE == ftpUp(fullUrl, (BYTE*)uploadStr, strlen(uploadStr)))
 	{
 		cout << "FTP Upload Error." << endl;
@@ -574,8 +606,8 @@ BOOL network::ftp::ftpDownload(CWORD ftpAddress, CWORD ftpFileName)
 	DWORD dwDownloadDataSize = 0;
 	char* fullUrl = new char[strlen(ftpAddress) + strlen(ftpFileName) + 3];
 	strcpy(fullUrl, ftpAddress);
-	strcpy(fullUrl, "/");
-	strcpy(fullUrl, ftpFileName);
+	strcat(fullUrl, "/");
+	strcat(fullUrl, ftpFileName);
 
 	if (FALSE == ftpDown(fullUrl, &pDownloadData, &dwDownloadDataSize))
 	{
@@ -598,8 +630,8 @@ BOOL network::ftp::ftpDownload(CWORD ftpAddress, CWORD ftpFileName, CWORD downlo
 	DWORD dwDownloadDataSize = 0;
 	char* fullUrl = new char[strlen(ftpAddress) + strlen(ftpFileName) + 3];
 	strcpy(fullUrl, ftpAddress);
-	strcpy(fullUrl, "/");
-	strcpy(fullUrl, ftpFileName);
+	strcat(fullUrl, "/");
+	strcat(fullUrl, ftpFileName);
 
 	if (FALSE == ftpDown(fullUrl, &pDownloadData, &dwDownloadDataSize))
 	{
